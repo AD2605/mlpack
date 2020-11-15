@@ -1,5 +1,5 @@
 /**
- * @file print_input_param.hpp
+ * @file bindings/julia/print_input_param.hpp
  * @author Ryan Curtin
  *
  * Print the declaration of an input parameter as part of a line in a Julia
@@ -24,7 +24,7 @@ namespace julia {
  * function definition.  This doesn't include any commas or anything.
  */
 template<typename T>
-void PrintInputParam(const util::ParamData& d,
+void PrintInputParam(util::ParamData& d,
                      const void* /* input */,
                      void* /* output */)
 {

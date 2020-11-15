@@ -1,5 +1,5 @@
 /**
- * @file elu.hpp
+ * @file methods/ann/layer/elu.hpp
  * @author Vivek Pal
  * @author Dakshit Agrawal
  *
@@ -177,7 +177,7 @@ class ELU
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored delta object.

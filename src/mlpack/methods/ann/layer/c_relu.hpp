@@ -1,5 +1,5 @@
 /**
- * @file c_relu_impl.hpp
+ * @file methods/ann/layer/c_relu.hpp
  * @author Jeffin Sam
  *
  * Implementation of CReLU layer.
@@ -92,7 +92,7 @@ class CReLU
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& /* ar */, const unsigned int /* version */);
+  void serialize(Archive& /* ar */, const uint32_t /* version */);
 
  private:
   //! Locally-stored delta object.

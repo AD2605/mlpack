@@ -1,5 +1,5 @@
 /**
- * @file earth_mover_distance_impl.hpp
+ * @file methods/ann/loss_functions/earth_mover_distance_impl.hpp
  * @author Shikhar Jaiswal
  *
  * Implementation of the earth mover distance function.
@@ -48,7 +48,7 @@ template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void EarthMoverDistance<InputDataType, OutputDataType>::serialize(
     Archive& /* ar */,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
   /* Nothing to do here */
 }

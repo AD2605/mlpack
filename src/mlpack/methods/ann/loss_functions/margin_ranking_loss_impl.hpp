@@ -1,5 +1,5 @@
 /**
- * @file margin_ranking_loss_impl.hpp
+ * @file methods/ann/loss_functions/margin_ranking_loss_impl.hpp
  * @author Andrei Mihalea
  *
  * Implementation of the Margin Ranking Loss function.
@@ -63,9 +63,9 @@ template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void MarginRankingLoss<InputDataType, OutputDataType>::serialize(
     Archive& ar,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
-  ar & BOOST_SERIALIZATION_NVP(margin);
+  ar(CEREAL_NVP(margin));
 }
 
 } // namespace ann

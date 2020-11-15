@@ -1,5 +1,5 @@
 /**
- * @file dropout_impl.hpp
+ * @file methods/ann/layer/dropout_impl.hpp
  * @author Marcus Edel
  *
  * Implementation of the Dropout class, which implements a regularizer that
@@ -65,9 +65,9 @@ template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void Dropout<InputDataType, OutputDataType>::serialize(
     Archive& ar,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
-  ar & BOOST_SERIALIZATION_NVP(ratio);
+  ar(CEREAL_NVP(ratio));
 
   // Reset scale.
   scale = 1.0 / (1.0 - ratio);

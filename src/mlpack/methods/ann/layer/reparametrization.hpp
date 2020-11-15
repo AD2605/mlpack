@@ -1,5 +1,5 @@
 /**
- * @file reparametrization.hpp
+ * @file methods/ann/layer/reparametrization.hpp
  * @author Atharva Khandait
  *
  * Definition of the Reparametrization layer class which samples from a gaussian
@@ -134,7 +134,7 @@ class Reparametrization
    * Serialize the layer
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored number of output units.

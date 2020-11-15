@@ -1,5 +1,5 @@
 /**
- * @file recurrent.hpp
+ * @file methods/ann/layer/recurrent.hpp
  * @author Marcus Edel
  *
  * Definition of the LinearLayer class also known as fully-connected layer or
@@ -87,7 +87,7 @@ class Recurrent
    * f(x) by propagating x backwards trough f. Using the results from the feed
    * forward pass.
    *
-   * @param input The propagated input activation.
+   * @param * (input) The propagated input activation.
    * @param gy The backpropagated error.
    * @param g The calculated gradient.
    */
@@ -143,7 +143,7 @@ class Recurrent
    * Serialize the layer
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored delete visitor module object.

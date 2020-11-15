@@ -1,5 +1,5 @@
 /**
- * @file cross_entropy_error.hpp
+ * @file methods/ann/loss_functions/cross_entropy_error.hpp
  * @author Konstantin Sidorov
  *
  * Definition of the cross-entropy performance function.
@@ -78,7 +78,7 @@ class CrossEntropyError
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored output parameter object.

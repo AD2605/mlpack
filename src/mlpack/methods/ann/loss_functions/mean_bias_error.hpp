@@ -1,5 +1,5 @@
 /**
- * @file mean_bias_error.hpp
+ * @file methods/ann/loss_functions/mean_bias_error.hpp
  * @author Saksham Rastogi
  *
  * Definition of the mean bias error performance function.
@@ -69,7 +69,7 @@ class MeanBiasError
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored output parameter object.

@@ -1,5 +1,5 @@
 /**
- * @file layer_norm.hpp
+ * @file methods/ann/layer/layer_norm.hpp
  * @author Shikhar Jaiswal
  *
  * Definition of the Layer Normalization class.
@@ -152,7 +152,7 @@ class LayerNorm
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored number of input units.

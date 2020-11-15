@@ -1,5 +1,5 @@
 /**
- * @file string_encoding.hpp
+ * @file core/data/string_encoding.hpp
  * @author Jeffin Sam
  * @author Mikhail Lozhnikov
  *
@@ -134,7 +134,7 @@ class StringEncoding
    * Serialize the class to the given archive.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   /**

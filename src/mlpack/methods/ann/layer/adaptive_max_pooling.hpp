@@ -1,5 +1,5 @@
 /**
- * @file adaptive_max_pooling.hpp
+ * @file methods/ann/layer/adaptive_max_pooling.hpp
  * @author Kartik Dutt
  *
  * Definition of the AdaptiveMaxPooling class.
@@ -118,7 +118,7 @@ class AdaptiveMaxPooling
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int version);
+  void serialize(Archive& ar, const uint32_t version);
 
  private:
   /**

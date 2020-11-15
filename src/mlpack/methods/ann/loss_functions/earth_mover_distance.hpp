@@ -1,5 +1,5 @@
 /**
- * @file earth_mover_distance.hpp
+ * @file methods/ann/loss_functions/earth_mover_distance.hpp
  * @author Shikhar Jaiswal
  *
  * Definition of the earth mover distance function.
@@ -69,7 +69,7 @@ class EarthMoverDistance
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored output parameter object.

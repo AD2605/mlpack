@@ -1,5 +1,5 @@
 /**
- * @file kl_divergence.hpp
+ * @file methods/ann/loss_functions/kl_divergence.hpp
  * @author Dakshit Agrawal
  *
  * Definition of the Kullback–Leibler Divergence error function.
@@ -89,7 +89,7 @@ class KLDivergence
    * Serialize the loss function
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored output parameter object.

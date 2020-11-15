@@ -1,5 +1,5 @@
 /**
- * @file mean_bias_error_impl.hpp
+ * @file methods/ann/loss_functions/mean_bias_error_impl.hpp
  * @author Saksham Rastogi
  *
  * Implementation of the mean bias error performance function.
@@ -49,7 +49,7 @@ template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void MeanBiasError<InputDataType, OutputDataType>::serialize(
     Archive& /* ar */,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
   // Nothing to do here.
 }

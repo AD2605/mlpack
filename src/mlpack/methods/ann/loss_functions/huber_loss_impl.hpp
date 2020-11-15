@@ -1,5 +1,5 @@
 /**
- * @file huber_loss_impl.hpp
+ * @file methods/ann/loss_functions/huber_loss_impl.hpp
  * @author Mrityunjay Tripathi
  *
  * Implementation of the Huber loss function.
@@ -69,10 +69,10 @@ template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void HuberLoss<InputDataType, OutputDataType>::serialize(
     Archive& ar,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
-  ar & BOOST_SERIALIZATION_NVP(delta);
-  ar & BOOST_SERIALIZATION_NVP(mean);
+  ar(CEREAL_NVP(delta));
+  ar(CEREAL_NVP(mean));
 }
 
 } // namespace ann

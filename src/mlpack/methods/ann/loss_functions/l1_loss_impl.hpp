@@ -1,5 +1,5 @@
 /**
- * @file l1_loss_impl.hpp
+ * @file methods/ann/loss_functions/l1_loss_impl.hpp
  * @author Himanshu Pathak
  *
  * Implementation of the L1 Loss function.
@@ -52,9 +52,9 @@ template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void L1Loss<InputDataType, OutputDataType>::serialize(
     Archive& ar,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
-  ar & BOOST_SERIALIZATION_NVP(mean);
+  ar(CEREAL_NVP(mean));
 }
 
 } // namespace ann

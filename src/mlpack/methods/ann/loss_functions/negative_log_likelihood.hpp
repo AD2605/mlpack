@@ -1,5 +1,5 @@
 /**
- * @file negative_log_likelihood.hpp
+ * @file methods/ann/loss_functions/negative_log_likelihood.hpp
  * @author Marcus Edel
  *
  * Definition of the NegativeLogLikelihood class.
@@ -86,7 +86,7 @@ class NegativeLogLikelihood
    * Serialize the layer
    */
   template<typename Archive>
-  void serialize(Archive& /* ar */, const unsigned int /* version */);
+  void serialize(Archive& /* ar */, const uint32_t /* version */);
 
  private:
   //! Locally-stored delta object.

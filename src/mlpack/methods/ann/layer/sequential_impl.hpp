@@ -1,5 +1,5 @@
 /**
- * @file sequential_impl.hpp
+ * @file methods/ann/layer/sequential_impl.hpp
  * @author Marcus Edel
  *
  * Implementation of the Sequential class, which acts as a feed-forward fully
@@ -42,6 +42,45 @@ Sequential(const bool model, const bool ownsLayers) :
 {
   // Nothing to do here.
 }
+
+template <typename InputDataType, typename OutputDataType, bool Residual,
+          typename... CustomLayers>
+Sequential<InputDataType, OutputDataType, Residual, CustomLayers...>::
+Sequential(const Sequential& layer) :
+    model(layer.model),
+    reset(layer.reset),
+    width(layer.width),
+    height(layer.height),
+    ownsLayers(layer.ownsLayers)
+{
+  // Nothing to do here.
+}
+
+template <typename InputDataType, typename OutputDataType, bool Residual,
+          typename... CustomLayers>
+Sequential<InputDataType, OutputDataType, Residual, CustomLayers...>&
+Sequential<InputDataType, OutputDataType, Residual, CustomLayers...>::
+operator = (const Sequential& layer)
+{
+  if (this != &layer)
+  {
+    model = layer.model;
+    reset = layer.reset;
+    width = layer.width;
+    height = layer.height;
+    ownsLayers = layer.ownsLayers;
+    parameters = layer.parameters;
+    network.clear();
+    // Build new layers according to source network.
+    for (size_t i = 0; i < layer.network.size(); ++i)
+    {
+      this->network.push_back(boost::apply_visitor(copyVisitor,
+          layer.network[i]));
+    }
+  }
+  return *this;
+}
+
 
 template <typename InputDataType, typename OutputDataType, bool Residual,
           typename... CustomLayers>
@@ -189,10 +228,10 @@ template<typename InputDataType, typename OutputDataType, bool Residual,
 template<typename Archive>
 void Sequential<
     InputDataType, OutputDataType, Residual, CustomLayers...>::serialize(
-        Archive& ar, const unsigned int version)
+        Archive& ar, const uint32_t /* version */)
 {
   // If loading, delete the old layers.
-  if (Archive::is_loading::value)
+  if (cereal::is_loading<Archive>())
   {
     for (LayerTypes<CustomLayers...>& layer : network)
     {
@@ -200,13 +239,10 @@ void Sequential<
     }
   }
 
-  ar & BOOST_SERIALIZATION_NVP(model);
-  ar & BOOST_SERIALIZATION_NVP(network);
+  ar(CEREAL_NVP(model));
+  ar(CEREAL_VECTOR_VARIANT_POINTER(network));
 
-  if (version >= 1)
-    ar & BOOST_SERIALIZATION_NVP(ownsLayers);
-  else if (Archive::is_loading::value)
-    ownsLayers = !model;
+  ar(CEREAL_NVP(ownsLayers));
 }
 
 } // namespace ann

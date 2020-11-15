@@ -1,5 +1,5 @@
 /**
- * @file huber_loss.hpp
+ * @file methods/ann/loss_functions/huber_loss.hpp
  * @author Mrityunjay Tripathi
  *
  * Definition of the Huber loss function.
@@ -86,7 +86,7 @@ class HuberLoss
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored output parameter object.

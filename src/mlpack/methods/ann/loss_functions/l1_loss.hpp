@@ -1,5 +1,5 @@
 /**
- * @file l1_loss.hpp
+ * @file methods/ann/loss_functions/l1_loss.hpp
  * @author Himanshu Pathak
  *
  * Definition of the L1 Loss function.
@@ -77,7 +77,7 @@ class L1Loss
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored output parameter object.

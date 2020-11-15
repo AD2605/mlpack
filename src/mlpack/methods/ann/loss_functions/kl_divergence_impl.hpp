@@ -1,5 +1,5 @@
 /**
- * @file kl_divergence_impl.hpp
+ * @file methods/ann/loss_functions/kl_divergence_impl.hpp
  * @author Dakshit Agrawal
  *
  * Implementation of the Kullback–Leibler Divergence error function.
@@ -64,9 +64,9 @@ template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void KLDivergence<InputDataType, OutputDataType>::serialize(
     Archive& ar,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
-  ar & BOOST_SERIALIZATION_NVP(takeMean);
+  ar(CEREAL_NVP(takeMean));
 }
 
 } // namespace ann

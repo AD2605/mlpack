@@ -1,5 +1,5 @@
 /**
- * @file hinge_embedding_loss.hpp
+ * @file methods/ann/loss_functions/hinge_embedding_loss.hpp
  * @author Lakshya Ojha
  *
  * Definition of the Hinge Embedding Loss Function.
@@ -72,7 +72,7 @@ class HingeEmbeddingLoss
    * Serialize the loss function.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored output parameter object.

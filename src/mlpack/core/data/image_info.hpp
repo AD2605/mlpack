@@ -1,5 +1,5 @@
 /**
- * @file image_info.hpp
+ * @file core/data/image_info.hpp
  * @author Mehul Kumar Nirala
  *
  * An image information holder.
@@ -22,7 +22,8 @@ namespace data {
 /**
  * Checks if the given image filename is supported.
  *
- * @param filename Name of the image file.
+ * @param fileName Name of the image file.
+ * @param save Set to true to check if the file format can be saved, else loaded.
  * @return Boolean value indicating success if it is an image.
  */
 inline bool ImageFormatSupported(const std::string& fileName,
@@ -70,12 +71,12 @@ class ImageInfo
   size_t& Quality() { return quality; }
 
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */)
+  void serialize(Archive& ar, const uint32_t /* version */)
   {
-    ar & BOOST_SERIALIZATION_NVP(width);
-    ar & BOOST_SERIALIZATION_NVP(channels);
-    ar & BOOST_SERIALIZATION_NVP(height);
-    ar & BOOST_SERIALIZATION_NVP(quality);
+    ar(CEREAL_NVP(width));
+    ar(CEREAL_NVP(channels));
+    ar(CEREAL_NVP(height));
+    ar(CEREAL_NVP(quality));
   }
 
  private:

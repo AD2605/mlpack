@@ -1,5 +1,5 @@
 /**
- * @file mean_squared_logarithmic_error.hpp
+ * @file methods/ann/loss_functions/mean_squared_logarithmic_error.hpp
  * @author Saksham Rastogi
  *
  * Definition of the mean squared logarithmic error function.
@@ -69,7 +69,7 @@ class MeanSquaredLogarithmicError
    * Serialize the layer
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored output parameter object.

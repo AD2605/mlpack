@@ -1,5 +1,5 @@
 /**
- * @file adaptive_mean_pooling.hpp
+ * @file methods/ann/layer/adaptive_mean_pooling.hpp
  * @author Kartik Dutt
  *
  * Definition of the AdaptiveMeanPooling layer class.
@@ -119,7 +119,7 @@ class AdaptiveMeanPooling
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int version);
+  void serialize(Archive& ar, const uint32_t version);
 
  private:
   /**

@@ -1,5 +1,5 @@
 /**
- * @file reinforce_normal_impl.hpp
+ * @file methods/ann/layer/reinforce_normal_impl.hpp
  * @author Marcus Edel
  *
  * Implementation of the ReinforceNormalLayer class, which implements the
@@ -63,9 +63,9 @@ void ReinforceNormal<InputDataType, OutputDataType>::Backward(
 template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void ReinforceNormal<InputDataType, OutputDataType>::serialize(
-    Archive& ar, const unsigned int /* version */)
+    Archive& ar, const uint32_t /* version */)
 {
-  ar & BOOST_SERIALIZATION_NVP(stdev);
+  ar(CEREAL_NVP(stdev));
 }
 
 } // namespace ann

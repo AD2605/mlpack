@@ -1,5 +1,5 @@
 /**
- * @file mean_squared_error_impl.hpp
+ * @file methods/ann/loss_functions/mean_squared_error_impl.hpp
  * @author Marcus Edel
  *
  * Implementation of the mean squared error performance function.
@@ -48,7 +48,7 @@ template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void MeanSquaredError<InputDataType, OutputDataType>::serialize(
     Archive& /* ar */,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
   // Nothing to do here.
 }

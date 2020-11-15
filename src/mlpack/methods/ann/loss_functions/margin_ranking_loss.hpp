@@ -1,5 +1,5 @@
 /**
- * @file margin_ranking_loss.hpp
+ * @file methods/ann/loss_functions/margin_ranking_loss.hpp
  * @author Andrei Mihalea
  *
  * Definition of the Margin Ranking Loss function.
@@ -83,7 +83,7 @@ class MarginRankingLoss
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored output parameter object.

@@ -1,5 +1,5 @@
 /**
- * @file log_cosh_loss.hpp
+ * @file methods/ann/loss_functions/log_cosh_loss.hpp
  * @author Kartik Dutt
  *
  * Definition of the Log-Hyperbolic-Cosine loss function.
@@ -84,7 +84,7 @@ class LogCoshLoss
    * Serialize the loss function.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored output parameter object.

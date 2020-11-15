@@ -1,5 +1,5 @@
 /**
- * @file layer.hpp
+ * @file methods/ann/layer/layer.hpp
  * @author Marcus Edel
  *
  * This includes various layers to construct a model.
@@ -44,16 +44,20 @@
 #include "leaky_relu.hpp"
 #include "linear.hpp"
 #include "linear_no_bias.hpp"
+#include "linear3d.hpp"
 #include "log_softmax.hpp"
 #include "lookup.hpp"
 #include "lstm.hpp"
 #include "max_pooling.hpp"
 #include "mean_pooling.hpp"
 #include "minibatch_discrimination.hpp"
+#include "multihead_attention.hpp"
 #include "multiply_constant.hpp"
 #include "multiply_merge.hpp"
+#include "noisylinear.hpp"
 #include "padding.hpp"
 #include "parametric_relu.hpp"
+#include "positional_encoding.hpp"
 #include "recurrent_attention.hpp"
 #include "recurrent.hpp"
 #include "reinforce_normal.hpp"
@@ -61,6 +65,9 @@
 #include "select.hpp"
 #include "sequential.hpp"
 #include "softshrink.hpp"
+#include "softmax.hpp"
+#include "softmin.hpp"
+#include "spatial_dropout.hpp"
 #include "subview.hpp"
 #include "transposed_convolution.hpp"
 #include "virtual_batch_norm.hpp"

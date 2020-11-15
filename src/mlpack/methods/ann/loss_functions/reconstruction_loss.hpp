@@ -1,5 +1,5 @@
 /**
- * @file reconstruction_loss.hpp
+ * @file methods/ann/loss_functions/reconstruction_loss.hpp
  * @author Atharva Khandait
  *
  * Definition of the reconstruction loss performance function.
@@ -73,7 +73,7 @@ class ReconstructionLoss
    * Serialize the layer
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored distribution object.

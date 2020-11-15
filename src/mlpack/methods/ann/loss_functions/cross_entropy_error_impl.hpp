@@ -1,5 +1,5 @@
 /**
- * @file cross_entropy_error_impl.hpp
+ * @file methods/ann/loss_functions/cross_entropy_error_impl.hpp
  * @author Konstantin Sidorov
  *
  * Implementation of the cross-entropy performance function.
@@ -50,9 +50,9 @@ template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void CrossEntropyError<InputDataType, OutputDataType>::serialize(
     Archive& ar,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
-  ar & BOOST_SERIALIZATION_NVP(eps);
+  ar(CEREAL_NVP(eps));
 }
 
 } // namespace ann

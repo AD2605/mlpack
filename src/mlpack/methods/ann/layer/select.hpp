@@ -1,5 +1,5 @@
 /**
- * @file select.hpp
+ * @file methods/ann/layer/select.hpp
  * @author Marcus Edel
  *
  * Definition of the Select module.
@@ -55,7 +55,7 @@ class Select
    * f(x) by propagating x backwards trough f. Using the results from the feed
    * forward pass.
    *
-   * @param input The propagated input activation.
+   * @param * (input) The propagated input activation.
    * @param gy The backpropagated error.
    * @param g The calculated gradient.
    */
@@ -84,7 +84,7 @@ class Select
    * Serialize the layer
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored column index.

@@ -1,5 +1,5 @@
 /**
- * @file celu.hpp
+ * @file methods/ann/layer/celu.hpp
  * @author Gaurav Singh
  *
  * Definition of the CELU activation function as described by Jonathan T. Barron.
@@ -115,7 +115,7 @@ class CELU
    * Serialize the layer.
    */
   template<typename Archive>
-  void serialize(Archive& ar, const unsigned int /* version */);
+  void serialize(Archive& ar, const uint32_t /* version */);
 
  private:
   //! Locally-stored delta object.

@@ -1,5 +1,5 @@
 /**
- * @file reconstruction_loss_impl.hpp
+ * @file methods/ann/loss_functions/reconstruction_loss_impl.hpp
  * @author Atharva Khandait
  *
  * Implementation of the reconstruction loss performance function.
@@ -53,7 +53,7 @@ template<typename InputDataType, typename OutputDataType, typename DistType>
 template<typename Archive>
 void ReconstructionLoss<InputDataType, OutputDataType, DistType>::serialize(
     Archive& /* ar */,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
   // Nothing to do here.
 }

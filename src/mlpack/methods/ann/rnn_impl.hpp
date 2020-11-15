@@ -1,5 +1,5 @@
 /**
- * @file rnn_impl.hpp
+ * @file methods/ann/rnn_impl.hpp
  * @author Marcus Edel
  *
  * Definition of the RNN class, which implements recurrent neural networks.
@@ -24,8 +24,6 @@
 #include "visitor/gradient_set_visitor.hpp"
 #include "visitor/gradient_visitor.hpp"
 #include "visitor/weight_set_visitor.hpp"
-
-#include <boost/serialization/variant.hpp>
 
 namespace mlpack {
 namespace ann /** Artificial Neural Network. */ {
@@ -90,7 +88,8 @@ typename std::enable_if<
       !HasMaxIterations<OptimizerType, size_t&(OptimizerType::*)()>
       ::value, void>::type
 RNN<OutputLayerType, InitializationRuleType, CustomLayers...>::
-WarnMessageMaxIterations(OptimizerType& optimizer, size_t samples) const
+WarnMessageMaxIterations(OptimizerType& /* optimizer */,
+                         size_t /* samples */) const
 {
   return;
 }
@@ -546,38 +545,28 @@ template<typename OutputLayerType, typename InitializationRuleType,
          typename... CustomLayers>
 template<typename Archive>
 void RNN<OutputLayerType, InitializationRuleType, CustomLayers...>::serialize(
-    Archive& ar, const unsigned int version)
+    Archive& ar, const uint32_t /* version */)
 {
-  ar & BOOST_SERIALIZATION_NVP(parameter);
-  ar & BOOST_SERIALIZATION_NVP(rho);
-  ar & BOOST_SERIALIZATION_NVP(single);
-  ar & BOOST_SERIALIZATION_NVP(inputSize);
-  ar & BOOST_SERIALIZATION_NVP(outputSize);
-  ar & BOOST_SERIALIZATION_NVP(targetSize);
+  ar(CEREAL_NVP(parameter));
+  ar(CEREAL_NVP(rho));
+  ar(CEREAL_NVP(single));
+  ar(CEREAL_NVP(inputSize));
+  ar(CEREAL_NVP(outputSize));
+  ar(CEREAL_NVP(targetSize));
+  ar(CEREAL_NVP(reset));
 
-  // Earlier versions of the RNN code did not serialize the 'reset' variable.
-  if (version > 0)
-  {
-    ar & BOOST_SERIALIZATION_NVP(reset);
-  }
-
-  if (Archive::is_loading::value)
+  if (cereal::is_loading<Archive>())
   {
     std::for_each(network.begin(), network.end(),
         boost::apply_visitor(deleteVisitor));
     network.clear();
   }
 
-  ar & BOOST_SERIALIZATION_NVP(network);
+  ar(CEREAL_VECTOR_VARIANT_POINTER(network));
 
   // If we are loading, we need to initialize the weights.
-  if (Archive::is_loading::value)
+  if (cereal::is_loading<Archive>())
   {
-    // Earlier versions of the RNN code assumed that the weights needed to be
-    // reset on load.
-    if (version == 0)
-      reset = false;
-
     size_t offset = 0;
     for (LayerTypes<CustomLayers...>& layer : network)
     {

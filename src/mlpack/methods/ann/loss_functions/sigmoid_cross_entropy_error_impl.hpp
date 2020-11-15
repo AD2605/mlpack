@@ -1,5 +1,5 @@
 /**
- * @file sigmoid_cross_entropy_error_impl.hpp
+ * @file methods/ann/loss_functions/sigmoid_cross_entropy_error_impl.hpp
  * @author Kris Singh
  * @author Shikhar Jaiswal
  *
@@ -59,7 +59,7 @@ template<typename InputDataType, typename OutputDataType>
 template<typename Archive>
 void SigmoidCrossEntropyError<InputDataType, OutputDataType>::serialize(
     Archive& /* ar */,
-    const unsigned int /* version */)
+    const uint32_t /* version */)
 {
   // Nothing to do here
 }
