@@ -42,8 +42,10 @@ TEST_CASE("FFNCallbackTest", "[CallbackTest]")
   arma::mat data;
   arma::mat labels;
 
-  data::Load("lab1.csv", data, true);
-  data::Load("lab3.csv", labels, true);
+  if (!data::Load("lab1.csv", data))
+    FAIL("Cannot load test dataset lab1.csv!");
+  if (!data::Load("lab3.csv", labels))
+    FAIL("Cannot load test dataset lab3.csv!");
 
   FFN<MeanSquaredError<>, RandomInitialization> model;
 
@@ -66,8 +68,10 @@ TEST_CASE("FFNWithOptimizerCallbackTest", "[CallbackTest]")
   arma::mat data;
   arma::mat labels;
 
-  data::Load("lab1.csv", data, true);
-  data::Load("lab3.csv", labels, true);
+  if (!data::Load("lab1.csv", data))
+    FAIL("Cannot load test dataset lab1.csv!");
+  if (!data::Load("lab3.csv", labels))
+    FAIL("Cannot load test dataset lab3.csv!");
 
   FFN<MeanSquaredError<>, RandomInitialization> model;
 
@@ -90,7 +94,7 @@ TEST_CASE("RNNCallbackTest", "[CallbackTest]")
 {
   const size_t rho = 5;
   arma::cube input = arma::randu(1, 1, 5);
-  arma::cube target = arma::ones(1, 1, 5);
+  arma::cube target = arma::zeros(1, 1, 5);
   RandomInitialization init(0.5, 0.5);
 
   // Create model with user defined rho parameter.
@@ -116,7 +120,7 @@ TEST_CASE("RNNWithOptimizerCallbackTest", "[CallbackTest]")
 {
   const size_t rho = 5;
   arma::cube input = arma::randu(1, 1, 5);
-  arma::cube target = arma::ones(1, 1, 5);
+  arma::cube target = arma::zeros(1, 1, 5);
   RandomInitialization init(0.5, 0.5);
 
   // Create model with user defined rho parameter.

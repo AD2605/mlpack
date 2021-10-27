@@ -67,6 +67,9 @@ template<typename eT>
 void VirtualBatchNorm<InputDataType, OutputDataType>::Forward(
     const arma::Mat<eT>& input, arma::Mat<eT>& output)
 {
+  Log::Assert(input.n_rows % size == 0, "Input features must be divisible \
+      by feature maps.");
+
   inputParameter = input;
   arma::mat inputMean = arma::mean(input, 1);
   arma::mat inputMeanSquared = arma::mean(arma::square(input), 1);
@@ -139,7 +142,7 @@ void VirtualBatchNorm<InputDataType, OutputDataType>::serialize(
   if (cereal::is_loading<Archive>())
   {
     weights.set_size(size + size, 1);
-    loading = false;
+    loading = true;
   }
 
   ar(CEREAL_NVP(eps));

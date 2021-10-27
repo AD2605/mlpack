@@ -120,8 +120,7 @@ Convolution<
   weights.set_size(WeightSize(), 1);
 
   // Transform paddingType to lowercase.
-  std::string paddingTypeLow = paddingType;
-  util::ToLower(paddingType, paddingTypeLow);
+  const std::string paddingTypeLow = util::ToLower(paddingType);
 
   if (paddingTypeLow == "valid")
   {
@@ -136,6 +135,167 @@ Convolution<
   }
 
   padding = ann::Padding<>(padWLeft, padWRight, padHTop, padHBottom);
+}
+
+template<
+    typename ForwardConvolutionRule,
+    typename BackwardConvolutionRule,
+    typename GradientConvolutionRule,
+    typename InputDataType,
+    typename OutputDataType
+>
+Convolution<
+    ForwardConvolutionRule,
+    BackwardConvolutionRule,
+    GradientConvolutionRule,
+    InputDataType,
+    OutputDataType
+>::Convolution(
+    const Convolution& layer) :
+    inSize(layer.inSize),
+    outSize(layer.outSize),
+    kernelWidth(layer.kernelWidth),
+    kernelHeight(layer.kernelHeight),
+    strideWidth(layer.strideWidth),
+    strideHeight(layer.strideHeight),
+    padWLeft(layer.padWLeft),
+    padWRight(layer.padWRight),
+    padHBottom(layer.padHBottom),
+    padHTop(layer.padHTop),
+    inputWidth(layer.inputWidth),
+    inputHeight(layer.inputHeight),
+    outputWidth(layer.outputWidth),
+    outputHeight(layer.outputHeight),
+    padding(layer.padding),
+    weights(layer.weights)
+{
+  // Nothing to do here.
+}
+
+template<
+    typename ForwardConvolutionRule,
+    typename BackwardConvolutionRule,
+    typename GradientConvolutionRule,
+    typename InputDataType,
+    typename OutputDataType
+>
+Convolution<
+    ForwardConvolutionRule,
+    BackwardConvolutionRule,
+    GradientConvolutionRule,
+    InputDataType,
+    OutputDataType
+>::Convolution(
+    Convolution&& layer) :
+    inSize(0),
+    outSize(0),
+    kernelWidth(layer.kernelWidth),
+    kernelHeight(layer.kernelHeight),
+    strideWidth(layer.strideWidth),
+    strideHeight(layer.strideHeight),
+    padWLeft(layer.padWLeft),
+    padWRight(layer.padWRight),
+    padHBottom(layer.padHBottom),
+    padHTop(layer.padHTop),
+    inputWidth(layer.inputWidth),
+    inputHeight(layer.inputHeight),
+    outputWidth(layer.outputWidth),
+    outputHeight(layer.outputHeight),
+    padding(std::move(layer.padding)),
+    weights(std::move(layer.weights))
+{
+  // Nothing to do here.
+}
+
+template<
+    typename ForwardConvolutionRule,
+    typename BackwardConvolutionRule,
+    typename GradientConvolutionRule,
+    typename InputDataType,
+    typename OutputDataType
+>
+Convolution<
+    ForwardConvolutionRule,
+    BackwardConvolutionRule,
+    GradientConvolutionRule,
+    InputDataType,
+    OutputDataType
+>&
+Convolution<
+    ForwardConvolutionRule,
+    BackwardConvolutionRule,
+    GradientConvolutionRule,
+    InputDataType,
+    OutputDataType
+>::
+operator=(const Convolution& layer)
+{
+  if (this != &layer)
+  {
+    inSize = layer.inSize;
+    outSize = layer.outSize;
+    kernelWidth = layer.kernelWidth;
+    kernelHeight = layer.kernelHeight;
+    strideWidth = layer.strideWidth;
+    strideHeight = layer.strideHeight;
+    padWLeft = layer.padWLeft;
+    padWRight = layer.padWRight;
+    padHBottom = layer.padHBottom;
+    padHTop = layer.padHTop;
+    inputWidth = layer.inputWidth;
+    inputHeight = layer.inputHeight;
+    outputWidth = layer.outputWidth;
+    outputHeight = layer.outputHeight;
+    padding = layer.padding;
+    weights = layer.weights;
+  }
+
+  return *this;
+}
+template<
+    typename ForwardConvolutionRule,
+    typename BackwardConvolutionRule,
+    typename GradientConvolutionRule,
+    typename InputDataType,
+    typename OutputDataType
+>
+Convolution<
+    ForwardConvolutionRule,
+    BackwardConvolutionRule,
+    GradientConvolutionRule,
+    InputDataType,
+    OutputDataType
+>&
+Convolution<
+    ForwardConvolutionRule,
+    BackwardConvolutionRule,
+    GradientConvolutionRule,
+    InputDataType,
+    OutputDataType
+>::
+operator=(Convolution&& layer)
+{
+  if (this != &layer)
+  {
+    inSize = layer.inSize;
+    outSize = layer.outSize;
+    kernelWidth = layer.kernelWidth;
+    kernelHeight = layer.kernelHeight;
+    strideWidth = layer.strideWidth;
+    strideHeight = layer.strideHeight;
+    padWLeft = layer.padWLeft;
+    padWRight = layer.padWRight;
+    padHBottom = layer.padHBottom;
+    padHTop = layer.padHTop;
+    inputWidth = layer.inputWidth;
+    inputHeight = layer.inputHeight;
+    outputWidth = layer.outputWidth;
+    outputHeight = layer.outputHeight;
+    padding = std::move(layer.padding);
+    weights = std::move(layer.weights);
+  }
+
+  return *this;
 }
 
 template<

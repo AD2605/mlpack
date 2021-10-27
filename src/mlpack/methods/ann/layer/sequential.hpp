@@ -15,14 +15,13 @@
 
 #include <mlpack/prereqs.hpp>
 
-#include <boost/ptr_container/ptr_vector.hpp>
-
 #include "../visitor/delete_visitor.hpp"
 #include "../visitor/copy_visitor.hpp"
 #include "../visitor/delta_visitor.hpp"
 #include "../visitor/output_height_visitor.hpp"
 #include "../visitor/output_parameter_visitor.hpp"
 #include "../visitor/output_width_visitor.hpp"
+#include "../visitor/input_shape_visitor.hpp"
 
 #include "layer_types.hpp"
 #include "add_merge.hpp"
@@ -183,6 +182,8 @@ class Sequential
   arma::mat const& Gradient() const { return gradient; }
   //! Modify the gradient.
   arma::mat& Gradient() { return gradient; }
+
+  size_t InputShape() const;
 
   /**
    * Serialize the layer

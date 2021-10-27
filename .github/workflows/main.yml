@@ -11,20 +11,6 @@ on:
 name: mlpack.mlpack
 
 jobs:
-  cancel:
-    name: 'Cancel Previous Builds'
-    if: ${{ github.event_name == 'pull_request' && github.repository == 'mlpack/mlpack' }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - name: Get all workflow ids and set to env variable
-        run: echo ::set-env name=WORKFLOW_IDS_TO_CANCEL::$(curl https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows -s | jq -r '.workflows | map(.id|tostring) | join(",")')
-
-      - uses: styfle/cancel-workflow-action@0.5.0
-        with:
-          workflow_id: ${{ env.WORKFLOW_IDS_TO_CANCEL }}
-          access_token: ${{ secrets.GITHUB_TOKEN }}
-
   jobR:
     name: mlpack R tarball
     if: ${{ github.repository == 'mlpack/mlpack' }}
@@ -55,7 +41,7 @@ jobs:
             Rscript -e "install.packages('remotes')" -e "saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds')"
 
         - name: Cache R packages
-          if: runner.os != 'Windows'
+          if: runner.os != 'Windows' && runner.os != 'macOS'
           uses: actions/cache@v1
           with:
             path: ${{ env.R_LIBS_USER }}
@@ -65,8 +51,8 @@ jobs:
         - name: Install Build Dependencies
           run: |
             sudo apt-get update
-            sudo apt-get install -y --allow-unauthenticated libopenblas-dev liblapack-dev g++ libboost-all-dev libcereal-dev
-            curl https://data.kurg.org/armadillo-8.400.0.tar.xz | tar -xvJ && cd armadillo*
+            sudo apt-get install -y --allow-unauthenticated libopenblas-dev liblapack-dev g++ libboost-all-dev libcereal-dev libcurl4-openssl-dev
+            curl -L https://sourceforge.net/projects/arma/files/armadillo-9.800.6.tar.xz | tar -xvJ && cd armadillo*
             cmake . && make && sudo make install && cd ..
 
         - name: Install R-bindings dependencies
@@ -82,7 +68,7 @@ jobs:
 
         - name: Build
           run: |
-            cd build && make -j2
+            cd build && make && make mlpack_test
 
         - name: Run tests via ctest
           run: |
@@ -134,7 +120,7 @@ jobs:
         run: Rscript -e "install.packages('remotes')" -e "saveRDS(remotes::dev_package_deps('${{ needs.jobR.outputs.r_bindings }}', dependencies = TRUE), 'depends.Rds')"
 
       - name: Cache R packages
-        if: runner.os != 'Windows'
+        if: runner.os != 'Windows' && runner.os != 'macOS'
         uses: actions/cache@v1
         with:
           path: ${{ env.R_LIBS_USER }}
@@ -143,6 +129,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          install.packages('remotes')
           remotes::install_deps('${{ needs.jobR.outputs.r_bindings }}', dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}

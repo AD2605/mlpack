@@ -245,8 +245,7 @@ inline std::string PrintTypeDocs()
   data.required = false;
   data.input = true;
   data.loaded = false;
-  data.persistent = false;
-  data.value = boost::any(int(0));
+  data.value = ANY(int(0));
 
   std::string type = GetPrintableType<int>(data);
   oss << " - `" << type << "`{: #doc_" << BindingInfo::Language() << "_"
@@ -254,7 +253,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(double).name());
   data.cppType = "double";
-  data.value = boost::any(double(0.0));
+  data.value = ANY(double(0.0));
 
   type = GetPrintableType<double>(data);
   oss << " - `" << type << "`{: #doc_" << BindingInfo::Language() << "_"
@@ -263,7 +262,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(bool).name());
   data.cppType = "double";
-  data.value = boost::any(bool(0.0));
+  data.value = ANY(bool(0.0));
 
   type = GetPrintableType<bool>(data);
   oss << " - `" << type << "`{: #doc_" << BindingInfo::Language() << "_"
@@ -271,7 +270,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(std::string).name());
   data.cppType = "std::string";
-  data.value = boost::any(std::string(""));
+  data.value = ANY(std::string(""));
 
   type = GetPrintableType<std::string>(data);
   oss << " - `" << type << "`{: #doc_" << BindingInfo::Language() << "_"
@@ -280,7 +279,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(std::vector<int>).name());
   data.cppType = "std::vector<int>";
-  data.value = boost::any(std::vector<int>());
+  data.value = ANY(std::vector<int>());
 
   type = GetPrintableType<std::vector<int>>(data);
   oss << " - `" << type << "`{: #doc_" << BindingInfo::Language() << "_"
@@ -289,7 +288,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(std::vector<std::string>).name());
   data.cppType = "std::vector<std::string>";
-  data.value = boost::any(std::vector<std::string>());
+  data.value = ANY(std::vector<std::string>());
 
   type = GetPrintableType<std::vector<std::string>>(data);
   oss << " - `" << type << "`{: " << "#doc_" << BindingInfo::Language() << "_"
@@ -298,7 +297,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(arma::mat).name());
   data.cppType = "arma::mat";
-  data.value = boost::any(arma::mat());
+  data.value = ANY(arma::mat());
 
   type = GetPrintableType<arma::mat>(data);
   oss << " - `" << type << "`{: #doc_" << BindingInfo::Language() << "_"
@@ -307,7 +306,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(arma::Mat<size_t>).name());
   data.cppType = "arma::Mat<size_t>";
-  data.value = boost::any(arma::Mat<size_t>());
+  data.value = ANY(arma::Mat<size_t>());
 
   type = GetPrintableType<arma::Mat<size_t>>(data);
   oss << " - `" << type << "`{: #doc_" << BindingInfo::Language() << "_"
@@ -316,7 +315,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(arma::rowvec).name());
   data.cppType = "arma::rowvec";
-  data.value = boost::any(arma::rowvec());
+  data.value = ANY(arma::rowvec());
   const std::string& rowType = GetPrintableType<arma::rowvec>(data);
 
   oss << " - `" << rowType << "`{: #doc_" << BindingInfo::Language() << "_"
@@ -325,7 +324,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(arma::Row<size_t>).name());
   data.cppType = "arma::Row<size_t>";
-  data.value = boost::any(arma::Row<size_t>());
+  data.value = ANY(arma::Row<size_t>());
   const std::string& urowType = GetPrintableType<arma::Row<size_t>>(data);
 
   oss << " - `" << urowType << "`{: #doc_" << BindingInfo::Language() << "_"
@@ -335,7 +334,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(arma::vec).name());
   data.cppType = "arma::vec";
-  data.value = boost::any(arma::vec());
+  data.value = ANY(arma::vec());
   const std::string& colType = GetPrintableType<arma::vec>(data);
 
   // For some languages there is no distinction between column and row vectors.
@@ -349,7 +348,7 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(arma::Col<size_t>).name());
   data.cppType = "arma::Col<size_t>";
-  data.value = boost::any(arma::Col<size_t>());
+  data.value = ANY(arma::Col<size_t>());
   const std::string& ucolType = GetPrintableType<arma::Col<size_t>>(data);
 
   // For some languages there is no distinction between column and row vectors.
@@ -364,7 +363,7 @@ inline std::string PrintTypeDocs()
   data.tname =
       std::string(typeid(std::tuple<data::DatasetInfo, arma::mat>).name());
   data.cppType = "std::tuple<data::DatasetInfo, arma::mat>";
-  data.value = boost::any(std::tuple<data::DatasetInfo, arma::mat>());
+  data.value = ANY(std::tuple<data::DatasetInfo, arma::mat>());
 
   type = GetPrintableType<std::tuple<data::DatasetInfo, arma::mat>>(data);
   oss << " - `" << type << "`{: #doc_" << BindingInfo::Language() << "_"
@@ -374,14 +373,14 @@ inline std::string PrintTypeDocs()
 
   data.tname = std::string(typeid(priv::mlpackModel).name());
   data.cppType = "mlpackModel";
-  data.value = boost::any(new priv::mlpackModel());
+  data.value = ANY(new priv::mlpackModel());
 
   type = GetPrintableType<priv::mlpackModel*>(data);
   oss << " - `" << type << "`{: #doc_" << BindingInfo::Language()
       << "_model }: " << PrintTypeDoc<priv::mlpackModel*>(data) << std::endl;
 
   // Clean up memory.
-  delete boost::any_cast<priv::mlpackModel*>(data.value);
+  delete ANY_CAST<priv::mlpackModel*>(data.value);
 
   oss << std::endl << "</div>" << std::endl;
 
@@ -427,12 +426,14 @@ inline std::string PrintValue(const T& value, bool quotes)
 /**
  * Given a parameter name, print its corresponding default value.
  */
-inline std::string PrintDefault(const std::string& paramName)
+inline std::string PrintDefault(const std::string& bindingName,
+                                const std::string& paramName)
 {
-  if (IO::Parameters().count(paramName) == 0)
+  util::Params p = IO::Parameters(bindingName);
+  if (p.Parameters().count(paramName) == 0)
     throw std::invalid_argument("unknown parameter" + paramName + "!");
 
-  util::ParamData& d = IO::Parameters()[paramName];
+  util::ParamData& d = p.Parameters()[paramName];
 
   std::ostringstream oss;
 
@@ -444,23 +445,23 @@ inline std::string PrintDefault(const std::string& paramName)
   {
     if (BindingInfo::Language() == "cli")
     {
-      oss << cli::PrintDefault(paramName);
+      oss << cli::PrintDefault(bindingName, paramName);
     }
     else if (BindingInfo::Language() == "python")
     {
-      oss << python::PrintDefault(paramName);
+      oss << python::PrintDefault(bindingName, paramName);
     }
     else if (BindingInfo::Language() == "julia")
     {
-      oss << julia::PrintDefault(paramName);
+      oss << julia::PrintDefault(bindingName, paramName);
     }
     else if (BindingInfo::Language() == "go")
     {
-      oss << go::PrintDefault(paramName);
+      oss << go::PrintDefault(bindingName, paramName);
     }
     else if (BindingInfo::Language() == "r")
     {
-      oss << r::PrintDefault(paramName);
+      oss << r::PrintDefault(bindingName, paramName);
     }
     else
     {
@@ -594,45 +595,76 @@ std::string ProgramCall(const std::string& programName, Args... args)
 inline std::string ProgramCall(const std::string& programName)
 {
   std::string s = "```";
+  util::Params p = IO::Parameters(programName);
   if (BindingInfo::Language() == "cli")
   {
+    // Strip non-CLI options.
+    p.Parameters().erase("copy_all_inputs");
+    p.Parameters().erase("check_input_matrices");
+
     s += "bash\n";
     std::string import = PrintImport(GetBindingName(programName));
     if (import.size() > 0)
       s += "$ " + import + "\n";
-    s += cli::ProgramCall(programName);
+    s += cli::ProgramCall(p, programName);
   }
   else if (BindingInfo::Language() == "python")
   {
+    // Strip non-Python options.
+    p.Parameters().erase("help");
+    p.Parameters().erase("info");
+    p.Parameters().erase("version");
+
     s += "python\n";
     std::string import = PrintImport(programName);
     if (import.size() > 0)
       s += ">>> " + import + "\n";
-    s += python::ProgramCall(programName);
+    s += python::ProgramCall(p, programName);
   }
   else if (BindingInfo::Language() == "julia")
   {
+    // Strip non-Julia options.
+    p.Parameters().erase("help");
+    p.Parameters().erase("info");
+    p.Parameters().erase("version");
+    p.Parameters().erase("copy_all_inputs");
+    p.Parameters().erase("check_input_matrices");
+
     s += "julia\n";
     std::string import = PrintImport(programName);
     if (import.size() > 0)
       s += "julia> " + import + "\n";
-    s += julia::ProgramCall(programName);
+    s += julia::ProgramCall(p, programName);
   }
   else if (BindingInfo::Language() == "go")
   {
+    // Strip non-Go options.
+    p.Parameters().erase("help");
+    p.Parameters().erase("info");
+    p.Parameters().erase("version");
+    p.Parameters().erase("copy_all_inputs");
+    p.Parameters().erase("check_input_matrices");
+
     s += "go\n";
     std::string import = PrintImport(programName);
     if (import.size() > 0)
       s += import + "\n";
-    s += go::ProgramCall(programName);
+    s += go::ProgramCall(p, programName);
   }
   else if (BindingInfo::Language() == "r")
   {
+    // Strip non-R options.
+    p.Parameters().erase("help");
+    p.Parameters().erase("info");
+    p.Parameters().erase("version");
+    p.Parameters().erase("copy_all_inputs");
+    p.Parameters().erase("check_input_matrices");
+
     s += "R\n";
     std::string import = PrintImport(programName);
     if (import.size() > 0)
       s += "R> " + import + "\n";
-    s += r::ProgramCall(programName);
+    s += r::ProgramCall(p, programName);
   }
   else
   {
@@ -650,7 +682,8 @@ inline std::string ProgramCall(const std::string& programName)
  * that all of the PARAM_*() declarataions need to come before
  * BINDING_LONG_DESC() and BINDING_EXAMPLE() declaration.)
  */
-inline std::string ParamString(const std::string& paramName)
+inline std::string ParamString(const std::string& bindingName,
+                               const std::string& paramName)
 {
   // These functions always put a '' around the parameter, so we will skip that
   // bit.
@@ -658,7 +691,7 @@ inline std::string ParamString(const std::string& paramName)
   if (BindingInfo::Language() == "cli")
   {
     // The CLI bindings put a '' around the parameter, so skip that...
-    s = cli::ParamString(paramName);
+    s = cli::ParamString(bindingName, paramName);
   }
   else if (BindingInfo::Language() == "python")
   {
@@ -688,15 +721,14 @@ inline std::string ParamString(const std::string& paramName)
 /**
  * Print the user-encountered type of an option.
  */
-inline std::string ParamType(util::ParamData& d)
+inline std::string ParamType(util::Params& p, util::ParamData& d)
 {
   std::string output;
-  IO::GetSingleton().functionMap[d.tname]["GetPrintableType"](d, NULL,
-      &output);
+  p.functionMap[d.tname]["GetPrintableType"](d, NULL, &output);
   // We want to make this a link to the type documentation.
   std::string anchorType = output;
   bool result;
-  IO::GetSingleton().functionMap[d.tname]["IsSerializable"](d, NULL, &result);
+  p.functionMap[d.tname]["IsSerializable"](d, NULL, &result);
   if (result)
     anchorType = "model";
 
@@ -705,7 +737,7 @@ inline std::string ParamType(util::ParamData& d)
 }
 
 template<typename T>
-inline bool IgnoreCheck(const T& t)
+inline bool IgnoreCheck(const std::string& bindingName, const T& t)
 {
   if (BindingInfo::Language() == "cli")
   {
@@ -713,19 +745,19 @@ inline bool IgnoreCheck(const T& t)
   }
   else if (BindingInfo::Language() == "python")
   {
-    return python::IgnoreCheck(t);
+    return python::IgnoreCheck(bindingName, t);
   }
   else if (BindingInfo::Language() == "julia")
   {
-    return julia::IgnoreCheck(t);
+    return julia::IgnoreCheck(bindingName, t);
   }
   else if (BindingInfo::Language() == "go")
   {
-    return go::IgnoreCheck(t);
+    return go::IgnoreCheck(bindingName, t);
   }
   else if (BindingInfo::Language() == "r")
   {
-    return r::IgnoreCheck(t);
+    return r::IgnoreCheck(bindingName, t);
   }
   else
   {
